@@ -6,7 +6,11 @@
             <h1>{{ $post->title }}</h1>
             <ul class="list-group">
                 @foreach ($post->comments as $comment)
-                    <li class="list-group-item">{{ $comment->content }}</li>
+                    <li class="list-group-item">
+                        {{ $comment->content }}
+                        <a href="/comments/{{ $comment->id }}/edit">Edit</a>
+                        <a href="#" class="pull-right">{{ $comment->user->username }}</a>
+                    </li>
                 @endforeach
             </ul>
             <h3>Add a New Comment</h3>
