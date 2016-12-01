@@ -19,13 +19,20 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     {{-- 这里的name的取名通常和数据库表的字段名一样 --}}
-                    <textarea name="content" class="form-control"></textarea>
+                    <textarea name="content" class="form-control">{{ old('content') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Add Comment</button>
                 </div>
             </form>
+            @if (count($errors))
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li style="color:red;">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 @stop

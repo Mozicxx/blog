@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
     public function store(Request $request,Post $post)
     {
-        $post->addComment(
-            new Comment($request->all())
-        );
+        $this->validate($request, [
+            'content' => 'required|min:2'
+        ]);
+        $comment = new Comment($request->all());
+        //Auth::id()为当前登录用户id
+        $post->addComment($comment,1);
 //        return redirect('posts/' . $post->id);
         return back();
     }

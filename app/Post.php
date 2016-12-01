@@ -11,8 +11,10 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
-    public function addComment(Comment $comment)
+    public function addComment(Comment $comment, $userId)
     {
+        $comment->user_id = $userId;
+
         return $this->comments()->save($comment);
     }
 }

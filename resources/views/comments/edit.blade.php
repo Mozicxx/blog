@@ -5,8 +5,7 @@
     <div class="col-md-6 col-md-offset-3">
         <h1>Edit the Comment</h1>
         {{--method : post--}}
-        {{--<form method="POST" action="/comments/{{ $comment->id }}">--}}
-        <form method="POST" action="">
+        <form method="POST" action="/comments/{{ $comment->id }}">
             {{--<input type="hidden" name="_method" value="PATCH">--}}
             {{ method_field('PATCH') }}
             {{ csrf_field() }}
