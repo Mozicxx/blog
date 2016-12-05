@@ -17,7 +17,7 @@ class CommentsController extends Controller
         ]);
         $comment = new Comment($request->all());
         //Auth::id()为当前登录用户id
-        $post->addComment($comment,1);
+        $post->addComment($comment,Auth::id());
 //        return redirect('posts/' . $post->id);
         return back();
     }
@@ -30,6 +30,13 @@ class CommentsController extends Controller
     public function update(Request $request, Comment $comment)
     {
         $comment->update($request->all());
+
+        return redirect('posts/' . $comment->post->id);
+    }
+
+    public function delete(Comment $comment)
+    {
+        $comment->delete();
 
         return redirect('posts/' . $comment->post->id);
     }

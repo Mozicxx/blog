@@ -25,4 +25,12 @@ Route::get('posts/{post}', 'PostsController@show');
 Route::post('posts/{post}/comments', 'CommentsController@store');
 
 Route::get('comments/{comment}/edit', 'CommentsController@edit');
+Route::get('comments/{comment}/delete', 'CommentsController@delete');
 Route::patch('comments/{comment}', 'CommentsController@update');
+
+//Route::post('/login', 'UsersController@login');
+//Route::post('/register', 'UsersController@register');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

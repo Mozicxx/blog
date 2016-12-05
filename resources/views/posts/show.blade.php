@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -8,8 +8,11 @@
                 @foreach ($post->comments as $comment)
                     <li class="list-group-item">
                         {{ $comment->content }}
-                        <a href="/comments/{{ $comment->id }}/edit">Edit</a>
-                        <a href="#" class="pull-right">{{ $comment->user->username }}</a>
+                        @if(Auth::id() == $comment->user->id)
+                            <a href="/comments/{{ $comment->id }}/edit">Edit</a>
+                            <a href="/comments/{{ $comment->id }}/delete" style="color: #cc0000">Delete</a>
+                        @endif
+                        <a href="#" class="pull-right">{{ $comment->user->name }}</a>
                     </li>
                 @endforeach
             </ul>
